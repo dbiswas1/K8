@@ -125,4 +125,6 @@ API endpoint and Load balancer
 ###################### Output ###############################################
 
 ```
-! [Screencap-1](https://github.com/dbiswas1/K8/raw/master/images/EKS-1.png)
+![Screencap-1](https://github.com/dbiswas1/K8/raw/master/images/EKS-1.png)
+![Screencap-2](https://github.com/dbiswas1/K8/raw/master/images/EKS-2.png)
+![Screencap-3](https://github.com/dbiswas1/K8/raw/master/images/EKS-3.png)
