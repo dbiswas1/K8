@@ -78,7 +78,11 @@ Make sure Kubectl is installed. Please refer previous blogs for installing kubec
 ```
 
 ### Launch EKS
-This may take some time
+This may take some time and will create 
+VPC
+Subnets
+Certifcates
+API endpoint and Load balancer
 
 ```
   master ●✚  eksctl create cluster \
@@ -89,5 +93,35 @@ This may take some time
 --nodes-min=1 \
 --nodes-max=4 \
 --node-ami=auto
+
+###################### Output ###############################################
+[ℹ]  using region us-west-2
+[ℹ]  setting availability zones to [us-west-2c us-west-2a us-west-2b]
+[ℹ]  subnets for us-west-2c - public:192.168.0.0/19 private:192.168.96.0/19
+[ℹ]  subnets for us-west-2a - public:192.168.32.0/19 private:192.168.128.0/19
+[ℹ]  subnets for us-west-2b - public:192.168.64.0/19 private:192.168.160.0/19
+[ℹ]  nodegroup "ng-a1c7c70d" will use "ami-0923e4b35a30a5f53" [AmazonLinux2/1.12]
+[ℹ]  creating EKS cluster "avm-blog-3" in "us-west-2" region
+[ℹ]  will create 2 separate CloudFormation stacks for cluster itself and the initial nodegroup
+[ℹ]  if you encounter any issues, check CloudFormation console or try 'eksctl utils describe-stacks --region=us-west-2 --name=avm-blog-3'
+[ℹ]  2 sequential tasks: { create cluster control plane "avm-blog-3", create nodegroup "ng-a1c7c70d" }
+[ℹ]  building cluster stack "eksctl-avm-blog-3-cluster"
+[ℹ]  deploying stack "eksctl-avm-blog-3-cluster"
+[ℹ]  building nodegroup stack "eksctl-avm-blog-3-nodegroup-ng-a1c7c70d"
+[ℹ]  deploying stack "eksctl-avm-blog-3-nodegroup-ng-a1c7c70d"
+[✔]  all EKS cluster resource for "avm-blog-3" had been created
+[✔]  saved kubeconfig as "/Users/deepakkumar.biswas/.kube/config"
+[ℹ]  adding role "arn:aws:iam::303882392497:role/eksctl-avm-blog-3-nodegroup-ng-a1-NodeInstanceRole-1E0WFDTJ9JHL6" to auth ConfigMap
+[ℹ]  nodegroup "ng-a1c7c70d" has 0 node(s)
+[ℹ]  waiting for at least 1 node(s) to become ready in "ng-a1c7c70d"
+[ℹ]  nodegroup "ng-a1c7c70d" has 3 node(s)
+[ℹ]  node "ip-192-168-42-118.us-west-2.compute.internal" is not ready
+[ℹ]  node "ip-192-168-6-130.us-west-2.compute.internal" is ready
+[ℹ]  node "ip-192-168-65-11.us-west-2.compute.internal" is not ready
+[✖]  neither aws-iam-authenticator nor heptio-authenticator-aws are installed
+[ℹ]  cluster should be functional despite missing (or misconfigured) client binaries
+[✔]  EKS cluster "avm-blog-3" in "us-west-2" region is ready
+
+###################### Output ###############################################
 
 ```
