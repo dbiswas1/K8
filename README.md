@@ -1,10 +1,15 @@
-- [Setup Kubernetes Service Mesh Ingress to host microservices using Istio - PART 3](#setup-kubernetes-service-mesh-ingress-to-host-microservices-using-istio---part-3)
+# Setup Kubernetes Service Mesh Ingress to host microservices using Istio - PART 3
+
+This is Part 3 of the Blog series we have started ([Part-1](https://blog.avmconsulting.net/posts/2019-04-09-setup-kubernetes-cluster-with-terraform-and-kops-part-1/) and [Part-2](https://blog.avmconsulting.net/posts/2019-04-29-setup-kubernetes-cluster-with-terraform-and-kops-build-enterprise-containers-ready-using-part-2/))
+Previous blogs where more about Setting up Cluster and Creating Docker images. we wil see in this Blog how a typical microservice is deployed in 
+K8 service mesh using ISTIO.
+
+**TOC**
   * [Who should read this Blog:](#who-should-read-this-blog-)
   * [Short introduction](#short-introduction)
     + [EKS](#eks)
     + [EKSCTL](#eksctl)
     + [HELM](#helm)
-    + [TILLER](#tiller)
     + [ISTIO](#istio)
   * [Problem we are trying to solve](#problem-we-are-trying-to-solve)
   * [Stack used](#stack-used)
@@ -18,12 +23,7 @@
     + [Verify Istio](#verify-istio)
     + [Deploy the Application](#deploy-the-application)
     + [Verify Deployment and Services](#verify-deployment-and-services)
-
-# Setup Kubernetes Service Mesh Ingress to host microservices using Istio - PART 3
-
-This is Part 3 of the Blog series we have started ([Part-1](https://blog.avmconsulting.net/posts/2019-04-09-setup-kubernetes-cluster-with-terraform-and-kops-part-1/) and [Part-2](https://blog.avmconsulting.net/posts/2019-04-29-setup-kubernetes-cluster-with-terraform-and-kops-build-enterprise-containers-ready-using-part-2/))
-Previous blogs where more about Setting up Cluster and Creating Docker images. we wil see in this Blog how a typical microservice is deployed in 
-K8 service mesh using ISTIO.
+- [Cluster Cleanup](#cluster-cleanup)
 
 ## Who should read this Blog:
 This Blog will be quick start guide to get the basic understanding of service mesh ISTIO. Wil be using 
@@ -385,4 +385,27 @@ istio-ingressgateway   LoadBalancer   10.100.117.186   ab54d0978901411e99bd2023c
 ```
 
 ![](https://github.com/dbiswas1/K8/raw/master/images/EKS-5.png)
+
+>NOTE : Keep Refreshing the Page and observe the Review section. this is Canary deployment with traffic going to all the 
+version of code. refere https://github.com/istio/istio/blob/master/samples/bookinfo/networking/virtual-service-reviews-80-20.yaml
+
+
+# Cluster Cleanup
+Ideally one should cleanup the application and then the EKS cluster, since this is a Test cluster. I am directly 
+deleting the EKS. **PLEASE DO NOT DO THIS CLEANUP in LIVE SYSTEM**
+
+```
+  master ●✚  eksctl delete cluster --name=avm-blog-3
+[ℹ]  using region us-west-2
+[ℹ]  deleting EKS cluster "avm-blog-3"
+[✔]  kubeconfig has been updated
+[ℹ]  2 sequential tasks: { delete nodegroup "ng-a1c7c70d", delete cluster control plane "avm-blog-3" [async] }
+[ℹ]  will delete stack "eksctl-avm-blog-3-nodegroup-ng-a1c7c70d"
+[ℹ]  waiting for stack "eksctl-avm-blog-3-nodegroup-ng-a1c7c70d" to get deleted
+[ℹ]  will delete stack "eksctl-avm-blog-3-cluster"
+[✔]  all cluster resources were deleted
+```
+
+
+
 
